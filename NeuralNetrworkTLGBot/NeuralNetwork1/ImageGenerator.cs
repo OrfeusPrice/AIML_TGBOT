@@ -71,16 +71,12 @@ namespace NeuralNetwork1
             return new Sample(input, FigureCount, currentFigure);
         }
 
-        public Sample GenerateExtFigure(Bitmap bm,  PictureBox pb)
+        public Bitmap Binarizer(Bitmap bm)
         {
-            pb.Image = bm;
-            bm = new Bitmap(pb.Image);
-            double[] input = new double[200];
-
             int R = Color.Black.R;
             int G = Color.Black.G;
             int B = Color.Black.B;
-            int dif = 230;
+            int dif = 150;
 
             for (int i = 0; i < 100; i++)
             {
@@ -94,6 +90,17 @@ namespace NeuralNetwork1
                         bm.SetPixel(i, j, Color.White);
                 }
             }
+            return bm;
+        }
+        public Sample GenerateExtFigure(Bitmap bm,  PictureBox pb)
+        {
+            double[] input = new double[200];
+
+            bm = Binarizer(bm);
+
+            int R = Color.Black.R;
+            int G = Color.Black.G;
+            int B = Color.Black.B;
 
             for (int i = 0; i < 100; i++)
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -34,7 +35,7 @@ namespace NeuralNetwork1
             formUpdater = updater;
             perseptron = net;
             AIMLbot = new AIMLBotik();
-            pb = pb;
+            this.pb = pb;
             generator = gi;
         }
 
@@ -60,21 +61,23 @@ namespace NeuralNetwork1
                 await botik.DownloadFileAsync(fl.FilePath, imageStream, cancellationToken: cancellationToken);
                 var img = System.Drawing.Image.FromStream(imageStream);
 
-                System.Drawing.Bitmap bm = new System.Drawing.Bitmap(img);
+                System.Drawing.Bitmap bm = new System.Drawing.Bitmap(img, 100,100);
+                
 
                 //  Масштабируем aforge
-                AForge.Imaging.Filters.ResizeBilinear scaleFilter = new AForge.Imaging.Filters.ResizeBilinear(200, 200);
+                AForge.Imaging.Filters.ResizeBilinear scaleFilter = new AForge.Imaging.Filters.ResizeBilinear(100, 100);
                 var uProcessed = scaleFilter.Apply(AForge.Imaging.UnmanagedImage.FromManagedImage(bm));
 
                 Sample sample = generator.GenerateExtFigure(bm, this.pb);
+                pb.Image = bm;
 
                 switch (perseptron.Predict(sample))
                 {
-                    case FigureType.Mercury: botik.SendTextMessageAsync(message.Chat.Id, "Это легко, это был Меркурий!"); break;
+                    case FigureType.Mercury: botik.SendTextMessageAsync(message.Chat.Id, "Это легко, это Меркурий!"); break;
                     case FigureType.Venus: botik.SendTextMessageAsync(message.Chat.Id, "Это легко, Венера!"); break;
                     case FigureType.Earth: botik.SendTextMessageAsync(message.Chat.Id, "Земля!"); break;
                     case FigureType.Mars: botik.SendTextMessageAsync(message.Chat.Id, "Это легко, это был Марс!"); break;
-                    case FigureType.Jupiter: botik.SendTextMessageAsync(message.Chat.Id, "Это легко, это был Юпитер!"); break;
+                    case FigureType.Jupiter: botik.SendTextMessageAsync(message.Chat.Id, "Это Юпитер!"); break;
                     case FigureType.Saturn: botik.SendTextMessageAsync(message.Chat.Id, "Это Сатурн!"); break;
                     case FigureType.Uranus: botik.SendTextMessageAsync(message.Chat.Id, "Это явно Уран!"); break;
                     case FigureType.Neptune: botik.SendTextMessageAsync(message.Chat.Id, "Однозначно Нептун!"); break;
