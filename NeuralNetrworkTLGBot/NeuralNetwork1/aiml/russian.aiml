@@ -103,6 +103,41 @@
 		</template>
 	</category>
 
+	<category>
+		<pattern> FACT </pattern>
+		<template>
+			<condition name="planet" value="Солнце">
+				<srai>Солнце</srai>
+			</condition>
+			<condition name="planet" value="Луна">
+				<srai>Луна</srai>
+			</condition>
+			<condition name="planet" value="Меркурий">
+				<srai>Меркурий</srai>
+			</condition>
+			<condition name="planet" value="Венера">
+				<srai>Венера</srai>
+			</condition>
+			<condition name="planet" value="Земля">
+				<srai>Земля</srai>
+			</condition>
+			<condition name="planet" value="Марс">
+				<srai>Марс</srai>
+			</condition>
+			<condition name="planet" value="Юпитер">
+				<srai>Юпитер</srai>
+			</condition>
+			<condition name="planet" value="Сатурн">
+				<srai>Сатурн</srai>
+			</condition>
+			<condition name="planet" value="Уран">
+				<srai>Уран</srai>
+			</condition>
+			<condition name="planet" value="Нептун">
+				<srai>Нептун</srai>
+			</condition>
+		</template>
+	</category>
 
 	<!-- ОБЩЕНИЕ -->
 	<!-- Приветствие -->
@@ -446,6 +481,62 @@
 		<pattern>Что происходит</pattern>
 		<template>
 			<srai>CURPLANET</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Что это</pattern>
+		<template>
+			<srai>CURPLANET</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Что ты о нем знаешь</pattern>
+		<template>
+			<srai>FACT</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Расскажи об этом</pattern>
+		<template>
+			<srai>FACT</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Расскажи факт</pattern>
+		<template>
+			<srai>FACT</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Расскажи про это</pattern>
+		<template>
+			<srai>FACT</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Что можешь рассказать об этом</pattern>
+		<template>
+			<srai>FACT</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Хочу факт</pattern>
+		<template>
+			<srai>FACT</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Факт</pattern>
+		<template>
+			<srai>FACT</srai>
 		</template>
 	</category>
 

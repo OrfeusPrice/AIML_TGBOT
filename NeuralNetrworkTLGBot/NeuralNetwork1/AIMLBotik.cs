@@ -9,8 +9,8 @@ namespace NeuralNetwork1
 {
     class AIMLBotik
     {
-        Bot myBot;
-        User myUser;  ///   map[TLGUserID] -> AIML User ID
+        public Bot myBot;
+        public User myUser;  ///   map[TLGUserID] -> AIML User ID
 
         public AIMLBotik()
         {

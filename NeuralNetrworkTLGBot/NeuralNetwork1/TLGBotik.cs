@@ -89,16 +89,16 @@ namespace NeuralNetwork1
 
                 switch (perseptron.Predict(sample))
                 {
-                    case FigureType.Mercury: botik.SendTextMessageAsync(message.Chat.Id, "Это легко, это Меркурий!"); break;
-                    case FigureType.Venus: botik.SendTextMessageAsync(message.Chat.Id, "Это легко, Венера!"); break;
-                    case FigureType.Earth: botik.SendTextMessageAsync(message.Chat.Id, "Земля!"); break;
-                    case FigureType.Mars: botik.SendTextMessageAsync(message.Chat.Id, "Это легко, это был Марс!"); break;
-                    case FigureType.Jupiter: botik.SendTextMessageAsync(message.Chat.Id, "Это Юпитер!"); break;
-                    case FigureType.Saturn: botik.SendTextMessageAsync(message.Chat.Id, "Это Сатурн!"); break;
-                    case FigureType.Uranus: botik.SendTextMessageAsync(message.Chat.Id, "Это явно Уран!"); break;
-                    case FigureType.Neptune: botik.SendTextMessageAsync(message.Chat.Id, "Однозначно Нептун!"); break;
-                    case FigureType.Sun: botik.SendTextMessageAsync(message.Chat.Id, "Это просто, Солнце!"); break;
-                    case FigureType.Moon: botik.SendTextMessageAsync(message.Chat.Id, "Я уверен, что это Луна!"); break;
+                    case FigureType.Mercury: botik.SendTextMessageAsync(message.Chat.Id, "Это легко, это Меркурий!"); AIMLbot.myUser.Predicates.addSetting("planet", "Меркурий"); break;
+                    case FigureType.Venus: botik.SendTextMessageAsync(message.Chat.Id, "Это легко, Венера!"); AIMLbot.myUser.Predicates.addSetting("planet", "Венера"); break;
+                    case FigureType.Earth: botik.SendTextMessageAsync(message.Chat.Id, "Земля!"); AIMLbot.myUser.Predicates.addSetting("planet", "Земля"); break;
+                    case FigureType.Mars: botik.SendTextMessageAsync(message.Chat.Id, "Это легко, это был Марс!"); AIMLbot.myUser.Predicates.addSetting("planet", "Марс"); break;
+                    case FigureType.Jupiter: botik.SendTextMessageAsync(message.Chat.Id, "Это Юпитер!"); AIMLbot.myUser.Predicates.addSetting("planet", "Юпитер"); break;
+                    case FigureType.Saturn: botik.SendTextMessageAsync(message.Chat.Id, "Это Сатурн!"); AIMLbot.myUser.Predicates.addSetting("planet", "Сатурн"); break;
+                    case FigureType.Uranus: botik.SendTextMessageAsync(message.Chat.Id, "Это явно Уран!"); AIMLbot.myUser.Predicates.addSetting("planet", "Уран"); break;
+                    case FigureType.Neptune: botik.SendTextMessageAsync(message.Chat.Id, "Однозначно Нептун!"); AIMLbot.myUser.Predicates.addSetting("planet", "Нептун"); break;
+                    case FigureType.Sun: botik.SendTextMessageAsync(message.Chat.Id, "Это просто, Солнце!"); AIMLbot.myUser.Predicates.addSetting("planet", "Солнце"); break;
+                    case FigureType.Moon: botik.SendTextMessageAsync(message.Chat.Id, "Я уверен, что это Луна!"); AIMLbot.myUser.Predicates.addSetting("planet", "Луна"); break;
                     default: botik.SendTextMessageAsync(message.Chat.Id, "Я такого не знаю!"); break;
                 }
 
