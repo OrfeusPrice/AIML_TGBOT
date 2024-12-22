@@ -19,7 +19,7 @@
 		<pattern>PLANET *</pattern>
 		<template>
 			<think>
-				<set planet="planet">
+				<set name="planet">
 					<star/>
 				</set>
 			</think>
@@ -88,6 +88,21 @@
 			</random>
 		</template>
 	</category>
+
+	<category>
+		<pattern>WHOAMI</pattern>
+		<template>
+			Вы <get name="user"/>.
+		</template>
+	</category>
+
+	<category>
+		<pattern>CURPLANET</pattern>
+		<template>
+			Мы говорим о <get name="planet"/>.
+		</template>
+	</category>
+
 
 	<!-- ОБЩЕНИЕ -->
 	<!-- Приветствие -->
@@ -331,6 +346,110 @@
 			<srai>parent</srai>
 		</template>
 	</category>
+
+	<!-- Кто я -->
+
+	<category>
+		<pattern>Кто я</pattern>
+		<template>
+			<srai>WHOAMI</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Как моё имя</pattern>
+		<template>
+			<srai>WHOAMI</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Как меня зовут</pattern>
+		<template>
+			<srai>WHOAMI</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Ты знаешь моё имя</pattern>
+		<template>
+			<srai>WHOAMI</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Я кто</pattern>
+		<template>
+			<srai>WHOAMI</srai>
+		</template>
+	</category>
+
+	<!-- О чём разговор -->
+
+	<category>
+		<pattern>О чем мы говорим</pattern>
+		<template>
+			<srai>CURPLANET</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>О какой планете мы говорим</pattern>
+		<template>
+			<srai>CURPLANET</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>О чем разговор</pattern>
+		<template>
+			<srai>CURPLANET</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Про что ты сейчас рассказываешь</pattern>
+		<template>
+			<srai>CURPLANET</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>О чем мы там говорили</pattern>
+		<template>
+			<srai>CURPLANET</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Что происходит</pattern>
+		<template>
+			<srai>CURPLANET</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Какая тема разговора</pattern>
+		<template>
+			<srai>CURPLANET</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Мы про что</pattern>
+		<template>
+			<srai>CURPLANET</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Что происходит</pattern>
+		<template>
+			<srai>CURPLANET</srai>
+		</template>
+	</category>
+
+
 
 	<!-- ФАКТЫ О ПЛАНЕТАХ -->
 
