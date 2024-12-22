@@ -90,9 +90,10 @@ namespace NeuralNetwork1
                         bm.SetPixel(i, j, Color.White);
                 }
             }
+            bm.Save("resend.png", System.Drawing.Imaging.ImageFormat.Png);
             return bm;
         }
-        public Sample GenerateExtFigure(Bitmap bm,  PictureBox pb)
+        public Sample GenerateExtFigure(Bitmap bm, PictureBox pb)
         {
             double[] input = new double[200];
 

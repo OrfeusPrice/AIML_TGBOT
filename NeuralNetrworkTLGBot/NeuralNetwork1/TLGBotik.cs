@@ -1,6 +1,8 @@
-﻿using System;
+﻿using AIMLbot.AIMLTagHandlers;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -45,6 +47,17 @@ namespace NeuralNetwork1
             formUpdater("Net updated!");
         }
 
+        private async Task SendPhoto(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken, Bitmap bm)
+        {
+            var message = update.Message;
+
+            using (var imageFile = System.IO.File.Open("resend.png", FileMode.Open))
+            {
+                var iof = new Telegram.Bot.Types.InputFiles.InputOnlineFile(imageFile);
+                await botik.SendPhotoAsync(message.Chat.Id, photo: iof, caption: "Вот так я увидел твоё фото", cancellationToken: cancellationToken);
+            }
+        }
+
         private async Task HandleUpdateMessageAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
             //  Тут очень простое дело - банально отправляем назад сообщения
@@ -61,8 +74,8 @@ namespace NeuralNetwork1
                 await botik.DownloadFileAsync(fl.FilePath, imageStream, cancellationToken: cancellationToken);
                 var img = System.Drawing.Image.FromStream(imageStream);
 
-                System.Drawing.Bitmap bm = new System.Drawing.Bitmap(img, 100,100);
-                
+                System.Drawing.Bitmap bm = new System.Drawing.Bitmap(img, 100, 100);
+
 
                 //  Масштабируем aforge
                 AForge.Imaging.Filters.ResizeBilinear scaleFilter = new AForge.Imaging.Filters.ResizeBilinear(100, 100);
@@ -70,6 +83,9 @@ namespace NeuralNetwork1
 
                 Sample sample = generator.GenerateExtFigure(bm, this.pb);
                 pb.Image = bm;
+
+                await SendPhoto(botClient, update, cancellationToken, bm);
+
 
                 switch (perseptron.Predict(sample))
                 {
@@ -86,6 +102,8 @@ namespace NeuralNetwork1
                     default: botik.SendTextMessageAsync(message.Chat.Id, "Я такого не знаю!"); break;
                 }
 
+
+
                 formUpdater("Picture recognized!");
                 return;
             }
@@ -93,20 +111,24 @@ namespace NeuralNetwork1
             if (message.Type == MessageType.Text)
             {
                 string userMessage = message.Text;
-
-                // Используем AIML-бота для ответа
-                string aimlResponse = AIMLbot.Talk(userMessage);
-
-                if (!string.IsNullOrEmpty(aimlResponse))
-                {
-                    await botik.SendTextMessageAsync(message.Chat.Id, aimlResponse, cancellationToken: cancellationToken);
-                }
+                if (userMessage == "/start")
+                    await botik.SendTextMessageAsync(message.Chat.Id, "Здравствуйте!\nЯ - AIML бот.\nЯ умею распознавать небесные тела Солнечной системы по их астрологическим символам.\nТак же я могу рассказать вам интересные факты о них, просто напишите название небесного тела, например: Солнце", cancellationToken: cancellationToken);
                 else
                 {
-                    await botik.SendTextMessageAsync(message.Chat.Id, "Я не понял, что вы имели в виду.", cancellationToken: cancellationToken);
-                }
+                    // Используем AIML-бота для ответа
+                    string aimlResponse = AIMLbot.Talk(userMessage);
 
-                formUpdater(userMessage);
+                    if (!string.IsNullOrEmpty(aimlResponse))
+                    {
+                        await botik.SendTextMessageAsync(message.Chat.Id, aimlResponse, cancellationToken: cancellationToken);
+                    }
+                    else
+                    {
+                        await botik.SendTextMessageAsync(message.Chat.Id, "Я не понял, что вы имели в виду.", cancellationToken: cancellationToken);
+                    }
+
+                    formUpdater(userMessage);
+                }
                 return;
             }
 
